@@ -1,0 +1,5 @@
+HomeWork
+
+1. Tambahkan role baru sebanyak yang kalian mau
+2. Tampilkan sesuau hal yang berbeda di setiap dashboard rolenya
+3. Bikin Register atau menu pendaftar, jadi hanya bisa user terdaftar yang bisa login

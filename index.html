@@ -1,0 +1,97 @@
+<html>
+    <head>
+
+    </head>
+    <style>
+        #root {
+            background-color: tomato;
+            color: wheat;
+            font-size: 2em;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center; */
+            align-items: center;
+        }
+    </style>
+    <body>
+        <!-- KONTEN WEBSITE -->
+        <div id="root">
+            <input type="text" placeholder="username" id="usernameInput" />
+            <input type="password" placeholder="password" id="passwordInput" />
+            <button id="loginButton" onclick="onLogin()">LOGIN</button>
+            <button id="logoutButton" onclick="onLogout()">LOGOUT</button>
+            <br><br>
+            <h1 id="admin">LOGIN SEBAGAI ADMIN</h1>
+            <h1 id="basic">LOGIN SEBAGAI USER BIASA</h1>
+        </div>
+        <script type="application/javascript">
+
+            // // Contoh styling dengan menggunakan js
+            // const myName = "Andreas Domenico";
+            // const myHobby = "Playing Music and Coding";
+            
+            // let root = document.getElementById('root');
+            // root.textContent = myName + ' ' + myHobby;
+            // root.style.backgroundColor = "tomato";
+            // root.style.color = "white";
+            // root.style.fontSize = "2em";
+            // root.style.textAlign = "center";
+            // root.style.height = "100vh";
+
+            let usernameInput = document.getElementById('usernameInput');
+            let passwordInput = document.getElementById('passwordInput');
+            let loginButton = document.getElementById('loginButton');
+            let logoutButton = document.getElementById('logoutButton');
+            let admin = document.getElementById('admin');
+            let basic = document.getElementById('basic');
+
+            admin.style.display = "none"; 
+            basic.style.display = "none";
+            logoutButton.style.display = "none";
+
+            function onLogin() {
+                localStorage.setItem("username", usernameInput.value);
+                logoutButton.style.display = "block";
+                if(usernameInput.value == "admin" && passwordInput.value == "admin123") {
+                    // alert('login sebagai admin');
+                    localStorage.setItem("role", "admin");
+                    usernameInput.style.display = "none";
+                    passwordInput.style.display = "none";
+                    loginButton.style.display = "none";
+                    admin.style.display = "block";
+                    basic.style.display = "none";
+                } else {
+                    // alert('user login biasa');
+                    localStorage.setItem("role", "basic");
+                    usernameInput.style.display = "none";
+                    passwordInput.style.display = "none";
+                    loginButton.style.display = "none";
+                    basic.style.display = "block";
+                    admin.style.display = "none";
+                };
+            };
+
+            if(localStorage.getItem('username')) {
+                usernameInput.style.display = "none";
+                passwordInput.style.display = "none";
+                loginButton.style.display = "none";
+                logoutButton.style.display = "block";
+                
+                if(localStorage.getItem('role') == "admin") {
+                    basic.style.display = "none";
+                    admin.style.display = "block";
+                } else {
+                    admin.style.display = "none";
+                    basic.style.display = "block";
+                }
+            }
+
+            function onLogout() {
+                localStorage.clear();
+                location.reload();
+            }
+        </script>
+    </body>
+</html>
