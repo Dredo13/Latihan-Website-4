@@ -23,8 +23,15 @@
             <button id="loginButton" onclick="onLogin()">LOGIN</button>
             <button id="logoutButton" onclick="onLogout()">LOGOUT</button>
             <br><br>
-            <h1 id="admin">LOGIN SEBAGAI ADMIN</h1>
-            <h1 id="basic">LOGIN SEBAGAI USER BIASA</h1>
+            <h1 id="admin">WELCOME ADMIN</h1>
+            <h1 id="basic">WELCOME USER </h1>
+            <h1 id="dev">WELCOME DEVELOPER</h1>
+            <h1 id="editor">WELCOME EDITOR</h1>
+
+            <img src="assets/images/basic.png" alt="" id="basicImage" height="400vh">
+            <img src="assets/images/admin.png" alt="" id="adminImage" height="400vh">
+            <img src="assets/images/editor.png" alt="" id="editorImage" height="400vh">
+            <img src="assets/images/dev.png" alt="" id="devImage" height="400vh">
         </div>
         <script type="application/javascript">
 
@@ -40,29 +47,88 @@
             // root.style.textAlign = "center";
             // root.style.height = "100vh";
 
+            // variabel berupa text
             let usernameInput = document.getElementById('usernameInput');
             let passwordInput = document.getElementById('passwordInput');
             let loginButton = document.getElementById('loginButton');
             let logoutButton = document.getElementById('logoutButton');
             let admin = document.getElementById('admin');
             let basic = document.getElementById('basic');
+            let developer = document.getElementById('dev');
+            let editor = document.getElementById('editor');
 
+            // varibel berupa gambar
+            let basicImage = document.getElementById('basicImage');
+            let adminImage = document.getElementById('adminImage');
+            let editorImage = document.getElementById('editorImage');
+            let developerImage = document.getElementById('devImage');
+
+            basicImage.style.filter = "brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(10deg) opacity(0.8)";
+            adminImage.style.filter = "brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(10deg) opacity(0.8)";
+            editorImage.style.filter = "brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(10deg) opacity(0.8)";
+            developerImage.style.filter = "brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(10deg) opacity(0.8)";
+
+            // menghilangkan gambar di tampilan awal
             admin.style.display = "none"; 
             basic.style.display = "none";
+            dev.style.display = "none";
+            editor.style.display = "none";
             logoutButton.style.display = "none";
+            basicImage.style.display = "none";
+            adminImage.style.display = "none";
+            editorImage.style.display = "none";
+            developerImage.style.display = "none";
 
             function onLogin() {
                 localStorage.setItem("username", usernameInput.value);
                 logoutButton.style.display = "block";
-                if(usernameInput.value == "admin" && passwordInput.value == "admin123") {
+                if(usernameInput.value == "developer" && passwordInput.value == "dev123") {
                     // alert('login sebagai admin');
+                    localStorage.setItem("role", "developer");
+                    usernameInput.style.display = "none";
+                    passwordInput.style.display = "none";
+                    loginButton.style.display = "none";
+                    admin.style.display = "none";
+                    basic.style.display = "none";
+                    dev.style.display = "block";
+                    editor.style.display = "none";
+
+                    basicImage.style.display = "none";
+                    adminImage.style.display = "none";
+                    editorImage.style.display = "none";
+                    developerImage.style.display = "block";
+                } 
+                else if(usernameInput.value == "admin" && passwordInput.value == "admin123") {
                     localStorage.setItem("role", "admin");
                     usernameInput.style.display = "none";
                     passwordInput.style.display = "none";
                     loginButton.style.display = "none";
                     admin.style.display = "block";
                     basic.style.display = "none";
-                } else {
+                    dev.style.display = "none";
+                    editor.style.display = "none";
+
+                    basicImage.style.display = "none";
+                    adminImage.style.display = "block";
+                    editorImage.style.display = "none";
+                    developerImage.style.display = "none";
+                }
+                else if(usernameInput.value == "editor" && passwordInput.value == "editor123") {
+                    localStorage.setItem("role", "editor");
+                    usernameInput.style.display = "none";
+                    passwordInput.style.display = "none";
+                    loginButton.style.display = "none";
+                    admin.style.display = "none";
+                    basic.style.display = "none";
+                    dev.style.display = "none";
+                    editor.style.display = "block";
+
+                    basicImage.style.display = "none";
+                    adminImage.style.display = "none";
+                    editorImage.style.display = "block";
+                    developerImage.style.display = "none";
+                }
+                else {
                     // alert('user login biasa');
                     localStorage.setItem("role", "basic");
                     usernameInput.style.display = "none";
@@ -70,6 +136,13 @@
                     loginButton.style.display = "none";
                     basic.style.display = "block";
                     admin.style.display = "none";
+                    dev.style.display = "none";
+                    editor.style.display = "none";
+
+                    basicImage.style.display = "block";
+                    adminImage.style.display = "none";
+                    editorImage.style.display = "none";
+                    developerImage.style.display = "none";
                 };
             };
 
